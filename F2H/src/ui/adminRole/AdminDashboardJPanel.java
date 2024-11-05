@@ -65,14 +65,17 @@ public class AdminDashboardJPanel extends javax.swing.JPanel {
         jLabel10.setBackground(new java.awt.Color(36, 147, 212));
         jLabel10.setFont(new java.awt.Font("Khmer MN", 1, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(212, 67, 30));
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-admin-70.png"))); // NOI18N
         jLabel10.setText("Admin Dashboard");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/VegPics.jpg"))); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(255, 102, 102));
         jButton1.setFont(new java.awt.Font("Khmer MN", 0, 18)); // NOI18N
-        jButton1.setText("Create An User");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-register-30.png"))); // NOI18N
+        jButton1.setText("Create Users");
+        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -81,8 +84,10 @@ public class AdminDashboardJPanel extends javax.swing.JPanel {
 
         jButton3.setBackground(new java.awt.Color(255, 102, 102));
         jButton3.setFont(new java.awt.Font("Khmer MN", 0, 18)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-batch-assign-30.png"))); // NOI18N
         jButton3.setText("Manage Users");
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -91,8 +96,10 @@ public class AdminDashboardJPanel extends javax.swing.JPanel {
 
         btnSalesReport.setBackground(new java.awt.Color(255, 102, 102));
         btnSalesReport.setFont(new java.awt.Font("Khmer MN", 0, 18)); // NOI18N
+        btnSalesReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-sales-report-40.png"))); // NOI18N
         btnSalesReport.setText("Sales Report");
-        btnSalesReport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalesReport.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnSalesReport.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnSalesReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalesReportActionPerformed(evt);
@@ -101,8 +108,10 @@ public class AdminDashboardJPanel extends javax.swing.JPanel {
 
         btnDashboard.setBackground(new java.awt.Color(255, 102, 102));
         btnDashboard.setFont(new java.awt.Font("Khmer MN", 0, 18)); // NOI18N
+        btnDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-analysis-40.png"))); // NOI18N
         btnDashboard.setText("Analysis");
-        btnDashboard.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnDashboard.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnDashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDashboardActionPerformed(evt);
@@ -116,24 +125,27 @@ public class AdminDashboardJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addGap(78, 78, 78)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSalesReport, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(292, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnDashboard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSalesReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel10)))
+                .addContainerGap(272, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addComponent(jLabel10)
-                .addGap(67, 67, 67)
+                .addGap(63, 63, 63)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(41, 41, 41)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)

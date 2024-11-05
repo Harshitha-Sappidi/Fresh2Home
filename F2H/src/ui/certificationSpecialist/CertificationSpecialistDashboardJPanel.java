@@ -10,7 +10,6 @@ import business.enterprise.Enterprise;
 import business.enterprise.ProductionEnterprise;
 import business.feedback.Feedback;
 import business.network.Network;
-import business.organization.DeliveryOrganization;
 import business.organization.FarmersOrganization;
 import business.organization.Organization;
 import business.products.Product;
@@ -25,12 +24,18 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -39,6 +44,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
@@ -60,6 +66,7 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
     private WorkRequest request;
     private boolean view = false;
     private FarmersOrganization farmerOrganization;
+    private String currentFilePath;
 
     ImageIcon ideaImage;
     private int userId;
@@ -92,37 +99,35 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
 
             }
         });
-        
+
         jTable1.addMouseListener(new MouseAdapter() {
-        public void mouseClicked(MouseEvent evt) {
-            JTable table = (JTable) evt.getSource();
-            int row = table.rowAtPoint(evt.getPoint());
-            int col = table.columnAtPoint(evt.getPoint());
+            public void mouseClicked(MouseEvent evt) {
+                JTable table = (JTable) evt.getSource();
+                int row = table.rowAtPoint(evt.getPoint());
+                int col = table.columnAtPoint(evt.getPoint());
 
-            // Assuming the file path is in the 3rd column (index 2)
-            if (row >= 0 && col == 2) {
-                String filePath = table.getValueAt(row, col).toString();
-                openPDF(filePath);
+                // Assuming the file path is in the 3rd column (index 2)
+                if (row >= 0 && col == 2) {
+                    String filePath = table.getValueAt(row, col).toString();
+                    openPDF(filePath);
+                }
             }
-        }
-    });
-        
+        });
+
         certificate.addChangeListener(new ChangeListener() {
-        @Override
-        public void stateChanged(ChangeEvent e) {
-            JTabbedPane tabbedPane = (JTabbedPane) e.getSource();
-            int selectedIndex = tabbedPane.getSelectedIndex();
-            String selectedTabTitle = tabbedPane.getTitleAt(selectedIndex);
-            System.out.println("Tab selected: " + selectedTabTitle); // Debug statement
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                JTabbedPane tabbedPane = (JTabbedPane) e.getSource();
+                int selectedIndex = tabbedPane.getSelectedIndex();
+                String selectedTabTitle = tabbedPane.getTitleAt(selectedIndex);
+                System.out.println("Tab selected: " + selectedTabTitle); // Debug statement
 
-            if ("Report".equals(selectedTabTitle.trim())) {
-                System.out.println("Populating report table..."); // Debug statement
-                populateReportTable();
+                if ("Report".equals(selectedTabTitle.trim())) {
+                    System.out.println("Populating report table..."); // Debug statement
+                    populateReportTable();
+                }
             }
-        }
-    });
-
-        
+        });
 
         certificate.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -160,69 +165,65 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
             });
         }
     }
-    
-    
+
+    public void populateReportTable() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // Clear existing data
+
+        List<Report> reports = business.getReportDirectory().getReportList();
+        if (reports == null || reports.isEmpty()) {
+            System.out.println("No reports found or Report list is null."); // Debug statement
+            JOptionPane.showMessageDialog(null, "No reports available or Report directory is not initialized.", "No Reports", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        for (Report report : reports) {
+            Object[] row = new Object[]{
+                report.getName(),
+                report.getFileDescription(),
+                report.getFilePath().toString()
+            };
+            model.addRow(row);
+        }
+
+        if (model.getRowCount() == 0) {
+            System.out.println("Reports found, but none added to the table."); // Debug statement
+        } else {
+            System.out.println("Reports successfully added to the table."); // Debug statement
+        }
+
+        jTable1.revalidate(); // Refresh table
+        jTable1.repaint(); // Refresh table display
+    }
+
     public void openPDF(String filePath) {
-    if (Desktop.isDesktopSupported()) {
+        if (!Desktop.isDesktopSupported()) {
+            JOptionPane.showMessageDialog(null, "Desktop is not supported!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         try {
-            URL fileUrl = getClass().getResource(filePath);
-            if (fileUrl != null) {
-                File pdfFile = new File(fileUrl.toURI());
-                if (pdfFile.exists()) {
-                    Desktop.getDesktop().open(pdfFile);
-                } else {
-                    JOptionPane.showMessageDialog(null, "File does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Resource not found: " + filePath, "Error", JOptionPane.ERROR_MESSAGE);
+            File pdfFile = new File(filePath);
+            if (pdfFile.exists()) {
+                Desktop.getDesktop().open(pdfFile);
+                return;
             }
+
+            // Try loading from resources if the direct file path doesn't exist
+            URL resourceUrl = getClass().getResource(filePath);
+            if (resourceUrl != null) {
+                File resourceFile = new File(resourceUrl.toURI());
+                if (resourceFile.exists()) {
+                    Desktop.getDesktop().open(resourceFile);
+                    return;
+                }
+            }
+
+            JOptionPane.showMessageDialog(null, "File does not exist: " + filePath, "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error opening file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    } else {
-        JOptionPane.showMessageDialog(null, "Desktop is not supported!", "Error", JOptionPane.ERROR_MESSAGE);
     }
-}
-
-
-
-
-
-    
-    
-    public void populateReportTable() {
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0); // Clear existing data
-
-    List<Report> reports = business.getReportDirectory().getReportList();
-    if (reports == null || reports.isEmpty()) {
-        System.out.println("No reports found or Report list is null."); // Debug statement
-        JOptionPane.showMessageDialog(null, "No reports available or Report directory is not initialized.", "No Reports", JOptionPane.INFORMATION_MESSAGE);
-        return;
-    }
-
-    for (Report report : reports) {
-        Object[] row = new Object[] {
-            report.getName(),
-            report.getFileDescription(),
-            report.getFilePath().toString()
-        };
-        model.addRow(row);
-    }
-
-    if (model.getRowCount() == 0) {
-        System.out.println("Reports found, but none added to the table."); // Debug statement
-    } else {
-        System.out.println("Reports successfully added to the table."); // Debug statement
-    }
-
-    jTable1.revalidate(); // Refresh table
-    jTable1.repaint(); // Refresh table display
-}
-
-
-
-    
 
     private void innerTabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {
         JTabbedPane tabSource = (JTabbedPane) evt.getSource();
@@ -403,6 +404,14 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
         Report = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        btnAttach = new javax.swing.JButton();
+        btnRemove = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 113, 178));
 
@@ -532,7 +541,7 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
             .addGroup(UpdatePanelLayout.createSequentialGroup()
                 .addGap(315, 315, 315)
                 .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
         UpdatePanelLayout.setVerticalGroup(
             UpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -634,11 +643,9 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(ViewJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ViewJPanelLayout.createSequentialGroup()
-                        .addComponent(txtProductID)
+                        .addComponent(txtProductID, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                         .addGap(104, 104, 104))
-                    .addGroup(ViewJPanelLayout.createSequentialGroup()
-                        .addComponent(updateDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(updateDescription)))
         );
         ViewJPanelLayout.setVerticalGroup(
             ViewJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -654,7 +661,7 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
                     .addGroup(ViewJPanelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(updateDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -671,18 +678,18 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
                         .addComponent(StatusCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(78, 78, 78)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 661, Short.MAX_VALUE))
+                        .addGap(0, 673, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(ViewJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(UpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1287, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnView)
-                                .addGap(176, 176, 176)
-                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(163, 163, 163)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -695,18 +702,16 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
                         .addComponent(StatusCmbBox)
                         .addComponent(btnView1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)))
-                .addGap(8, 8, 8)
+                    .addComponent(btnView))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(UpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 359, Short.MAX_VALUE)
                     .addComponent(ViewJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(307, Short.MAX_VALUE))
+                .addGap(0, 1295, Short.MAX_VALUE))
         );
 
         certificate.addTab("View Products", jPanel1);
@@ -782,7 +787,7 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(feedbackScroll1, javax.swing.GroupLayout.DEFAULT_SIZE, 1345, Short.MAX_VALUE)
+            .addComponent(feedbackScroll1, javax.swing.GroupLayout.DEFAULT_SIZE, 1357, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -903,7 +908,7 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56)
                         .addComponent(btnSave2)))
-                .addContainerGap(692, Short.MAX_VALUE))
+                .addContainerGap(704, Short.MAX_VALUE))
         );
         addLayout.setVerticalGroup(
             addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -967,12 +972,14 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
                 .addGroup(BlogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGetFeedback1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Feedbacks, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(129, 129, 129))
         );
 
         certificate.addTab("Blog", Blog);
+
+        Report.setBackground(new java.awt.Color(0, 113, 178));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -987,18 +994,92 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(jTable1);
 
+        jLabel1.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel1.setText("Name");
+
+        jLabel2.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel2.setText("Description");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane4.setViewportView(jTextArea1);
+
+        btnAttach.setBackground(new java.awt.Color(0, 102, 153));
+        btnAttach.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
+        btnAttach.setForeground(new java.awt.Color(204, 255, 255));
+        btnAttach.setText("Attach");
+        btnAttach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAttachActionPerformed(evt);
+            }
+        });
+
+        btnRemove.setBackground(new java.awt.Color(0, 102, 153));
+        btnRemove.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
+        btnRemove.setForeground(new java.awt.Color(204, 255, 255));
+        btnRemove.setText("Remove");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
+
+        btnAdd.setBackground(new java.awt.Color(0, 102, 153));
+        btnAdd.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(204, 255, 255));
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ReportLayout = new javax.swing.GroupLayout(Report);
         Report.setLayout(ReportLayout);
         ReportLayout.setHorizontalGroup(
             ReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1345, Short.MAX_VALUE)
+            .addGroup(ReportLayout.createSequentialGroup()
+                .addGroup(ReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(ReportLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(ReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(40, 40, 40)
+                        .addGroup(ReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField1)
+                            .addGroup(ReportLayout.createSequentialGroup()
+                                .addComponent(btnAttach)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAdd))
+                            .addComponent(jScrollPane4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRemove)
+                        .addGap(12, 12, 12))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 835, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(522, Short.MAX_VALUE))
         );
         ReportLayout.setVerticalGroup(
             ReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ReportLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(659, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(ReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRemove))
+                .addGap(29, 29, 29)
+                .addGroup(ReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(ReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAttach)
+                    .addComponent(btnAdd))
+                .addContainerGap(1450, Short.MAX_VALUE))
         );
 
         certificate.addTab("Report", Report);
@@ -1009,28 +1090,21 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 876, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(certificate)
-                        .addGap(112, 112, 112))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 876, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCertificationUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(493, 493, 493))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(certificate)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCertificationUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCertificationUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(certificate)
-                .addGap(39, 39, 39))
+                .addGap(89, 89, 89))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1229,6 +1303,69 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProductIDActionPerformed
 
+    private void btnAttachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttachActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Select a PDF file");
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("PDF Documents", "pdf"));
+
+        int userSelection = fileChooser.showOpenDialog(this);
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToOpen = fileChooser.getSelectedFile();
+
+            try {
+                Path destDirectory = Paths.get(System.getProperty("user.dir"), "src", "pdf");
+                if (!Files.exists(destDirectory)) {
+                    Files.createDirectories(destDirectory);
+                }
+                Path target = destDirectory.resolve(fileToOpen.getName());
+
+                // Copy file with StandardCopyOption.REPLACE_EXISTING to overwrite existing files with the same name
+                Files.copy(fileToOpen.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
+                currentFilePath = target.toString();  // Update the path only on successful copy
+                JOptionPane.showMessageDialog(this, "File saved successfully to PDF directory!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Failed to save the file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            currentFilePath = null;  // Reset path if operation is canceled
+        }
+    }//GEN-LAST:event_btnAttachActionPerformed
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow >= 0) {
+            String filePath = (String) jTable1.getValueAt(selectedRow, 2); // Assuming the file path is in the 3rd column
+            File fileToDelete = new File(filePath);
+            if (fileToDelete.delete()) {
+                ((DefaultTableModel) jTable1.getModel()).removeRow(selectedRow);
+                JOptionPane.showMessageDialog(null, "File deleted successfully!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Failed to delete the file.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a file to delete.", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        String fileName = jTextField1.getText(); // Assuming jTextField1 is for the file name
+        String fileDescription = jTextArea1.getText(); // Assuming jTextArea1 is for the file description
+        String filePath = currentFilePath; // Use the path from the class variable
+
+        if (!fileName.isEmpty() && !fileDescription.isEmpty() && filePath != null && !filePath.isEmpty()) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.addRow(new Object[]{fileName, fileDescription, filePath});
+            jTextField1.setText("");
+            jTextArea1.setText("");
+            JOptionPane.showMessageDialog(null, "File details added successfully!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please fill in all fields and attach a file.", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
     public void populateIdeaTable1() {
         DefaultTableModel model = (DefaultTableModel) tblViewIdea1.getModel();
         model.setRowCount(0);
@@ -1337,7 +1474,10 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel View;
     private javax.swing.JPanel ViewJPanel;
     private javax.swing.JPanel add;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnAttach;
     private javax.swing.JButton btnGetFeedback1;
+    private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnSave2;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSearch1;
@@ -1349,9 +1489,11 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane feedbackScroll1;
     private javax.swing.JLabel header;
     private javax.swing.JLabel ideaImg2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1360,9 +1502,12 @@ public class CertificationSpecialistDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblComments;
     private javax.swing.JLabel lblComments1;
     private javax.swing.JLabel lblImg2;

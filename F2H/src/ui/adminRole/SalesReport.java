@@ -64,25 +64,17 @@ public class SalesReport extends javax.swing.JPanel {
     private void initComponents() {
 
         btnSalesReport = new javax.swing.JButton();
-        btnback = new javax.swing.JButton();
         SalesReportJPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 235, 230));
+
+        btnSalesReport.setBackground(new java.awt.Color(255, 102, 102));
         btnSalesReport.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
-        btnSalesReport.setText("Sales Report");
+        btnSalesReport.setText("Show Sales Report");
         btnSalesReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalesReportActionPerformed(evt);
-            }
-        });
-
-        btnback.setBackground(new java.awt.Color(202, 224, 240));
-        btnback.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
-        btnback.setForeground(new java.awt.Color(0, 91, 191));
-        btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/login.png"))); // NOI18N
-        btnback.setText("Back");
-        btnback.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbackActionPerformed(evt);
             }
         });
 
@@ -91,45 +83,42 @@ public class SalesReport extends javax.swing.JPanel {
         SalesReportJPanel.setFont(new java.awt.Font(".SF NS Mono", 0, 14)); // NOI18N
         SalesReportJPanel.setLayout(new javax.swing.BoxLayout(SalesReportJPanel, javax.swing.BoxLayout.LINE_AXIS));
 
+        jLabel2.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 102, 102));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-back-button-30.png"))); // NOI18N
+        jLabel2.setText("Back");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
+                .addGap(91, 91, 91)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalesReport)
-                    .addComponent(btnback))
-                .addContainerGap(769, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(61, Short.MAX_VALUE)
-                    .addComponent(SalesReportJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(239, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(167, 167, 167)
+                        .addComponent(btnSalesReport))
+                    .addComponent(SalesReportJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(btnback)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 646, Short.MAX_VALUE)
-                .addComponent(btnSalesReport)
-                .addGap(251, 251, 251))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(199, Short.MAX_VALUE)
-                    .addComponent(SalesReportJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(335, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalesReport)
+                    .addComponent(jLabel2))
+                .addGap(39, 39, 39)
+                .addComponent(SalesReportJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(431, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
-        // TODO add your handling code here:
-        AdminDashboardJPanel panel = new AdminDashboardJPanel(userProcessContainer, account, business, network, enterprise);
-        userProcessContainer.add("AdminDashboardJPanel", panel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnbackActionPerformed
 
     private void btnSalesReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalesReportActionPerformed
       DefaultCategoryDataset dataset = createDataset();
@@ -169,6 +158,14 @@ public class SalesReport extends javax.swing.JPanel {
    
         
     }//GEN-LAST:event_btnSalesReportActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        AdminDashboardJPanel panel = new AdminDashboardJPanel(userProcessContainer, account, business, network, enterprise);
+        userProcessContainer.add("AdminDashboardJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jLabel2MouseClicked
     // TODO add your handling code here
 
 private DefaultCategoryDataset createDataset() {
@@ -203,6 +200,6 @@ private DefaultCategoryDataset createDataset() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel SalesReportJPanel;
     private javax.swing.JButton btnSalesReport;
-    private javax.swing.JButton btnback;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

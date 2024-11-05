@@ -16,6 +16,7 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import ui.adminRole.AdminDashboardJPanel;
 
 /**
  *
@@ -107,6 +108,8 @@ public class CustomerFeedbackJPanel extends javax.swing.JPanel {
         btnAdd = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 102, 153));
+
         tblordersummary.setBackground(new java.awt.Color(153, 204, 255));
         tblordersummary.setFont(new java.awt.Font("Khmer MN", 0, 14)); // NOI18N
         tblordersummary.setModel(new javax.swing.table.DefaultTableModel(
@@ -128,11 +131,13 @@ public class CustomerFeedbackJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tblordersummary);
 
         lblTitle1.setFont(new java.awt.Font("Khmer MN", 1, 24)); // NOI18N
-        lblTitle1.setForeground(new java.awt.Color(255, 51, 51));
+        lblTitle1.setForeground(new java.awt.Color(204, 255, 255));
         lblTitle1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle1.setText("Feedback");
         lblTitle1.setToolTipText("");
 
+        btnApply.setBackground(new java.awt.Color(204, 255, 255));
+        btnApply.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
         btnApply.setText("click me");
         btnApply.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,8 +145,14 @@ public class CustomerFeedbackJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 255, 255));
         jLabel1.setText("Review");
 
+        jPanel1.setBackground(new java.awt.Color(0, 102, 153));
+
+        prioritySlider.setFont(new java.awt.Font("Khmer MN", 0, 18)); // NOI18N
+        prioritySlider.setForeground(new java.awt.Color(204, 255, 255));
         prioritySlider.setMajorTickSpacing(1);
         prioritySlider.setMaximum(5);
         prioritySlider.setMinimum(1);
@@ -149,14 +160,20 @@ public class CustomerFeedbackJPanel extends javax.swing.JPanel {
         prioritySlider.setPaintLabels(true);
         prioritySlider.setPaintTicks(true);
 
+        jLabel3.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 255, 255));
         jLabel3.setText("Rating");
 
+        jLabel4.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(204, 255, 255));
         jLabel4.setText("Comments");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        btnAdd.setBackground(new java.awt.Color(204, 255, 255));
+        btnAdd.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,11 +216,12 @@ public class CustomerFeedbackJPanel extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnAdd)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel2.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-back-button-30.png"))); // NOI18N
         jLabel2.setText("Back");
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -215,24 +233,24 @@ public class CustomerFeedbackJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnApply)
-                .addGap(442, 442, 442))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(235, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(89, 89, 89)
+                        .addComponent(btnApply))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(167, 167, 167)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(240, 240, 240)
+                            .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(105, 105, 105)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(265, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,14 +269,6 @@ public class CustomerFeedbackJPanel extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
-        CustomerDashboardJPanel panel = new CustomerDashboardJPanel(userProcessContainer, account, business, network, enterprise);
-        userProcessContainer.add("CustomerDashboardJPanel", panel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_jLabel2MouseClicked
 
     private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplyActionPerformed
         // TODO add your handling code here:
@@ -308,6 +318,14 @@ public class CustomerFeedbackJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Please select an order to add a review.");
     }
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        CustomerDashboardJPanel panel = new CustomerDashboardJPanel(userProcessContainer, account, business, network, enterprise);
+        userProcessContainer.add("CustomerDashboardJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jLabel2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

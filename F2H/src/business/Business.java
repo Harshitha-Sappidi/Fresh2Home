@@ -18,46 +18,39 @@ import java.util.ArrayList;
  *
  * @author bhavanidevulapalli
  */
-public class Business extends Organization{
-        private static Business business;
-        private ArrayList<Network> networkList;
-        private ProductDirectory productDirectory;
-        private IdeaDirectory ideaDirectory;
-        private FeedbackDirectory feedbackDirectory;
-        private PersonDirectory personDirectory;
-        private ReviewDirectory reviewDirectory;
-        
-        private ReportDirectory reportDirectory;
- 
+public class Business extends Organization {
 
-    public static Business getInstance() 
-     {
-        if (business == null) 
-        {
+    private static Business business;
+    private ArrayList<Network> networkList;
+    private ProductDirectory productDirectory;
+    private IdeaDirectory ideaDirectory;
+    private FeedbackDirectory feedbackDirectory;
+    private PersonDirectory personDirectory;
+    private ReviewDirectory reviewDirectory;
+    private ReportDirectory reportDirectory;
+
+    public static Business getInstance() {
+        if (business == null) {
             business = new Business();
         }
         return business;
     }
-     
-     
 
-
- private Business()
-    {
+    private Business() {
         super(null);
-        
-        networkList=new ArrayList<>();
-        productDirectory=new ProductDirectory();
+
+        networkList = new ArrayList<>();
+        productDirectory = new ProductDirectory();
 
         ideaDirectory = new IdeaDirectory();
 
         feedbackDirectory = new FeedbackDirectory();
 
-        personDirectory =new PersonDirectory();
-        
-        reviewDirectory = new ReviewDirectory();
+        personDirectory = new PersonDirectory();
 
+        reviewDirectory = new ReviewDirectory();
         reportDirectory = new ReportDirectory();
+
     }
 
     public static Business getBusiness() {
@@ -76,7 +69,6 @@ public class Business extends Organization{
         this.productDirectory = productDirectory;
     }
 
-
     public PersonDirectory getPersonDirectory() {
         return personDirectory;
     }
@@ -85,9 +77,8 @@ public class Business extends Organization{
         this.personDirectory = personDirectory;
     }
 
-    public Network addNetwork()
-    {
-        Network n=new Network();
+    public Network addNetwork() {
+        Network n = new Network();
         networkList.add(n);
         return n;
     }
@@ -131,8 +122,7 @@ public class Business extends Organization{
     public void setReportDirectory(ReportDirectory reportDirectory) {
         this.reportDirectory = reportDirectory;
     }
+    
+    
 
-    
-    
-    
 }

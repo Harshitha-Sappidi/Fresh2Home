@@ -202,20 +202,23 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         txtResearcherName = new javax.swing.JTextField();
 
-        setForeground(new java.awt.Color(0, 0, 153));
+        setBackground(new java.awt.Color(0, 102, 153));
+        setForeground(new java.awt.Color(204, 255, 255));
         setPreferredSize(new java.awt.Dimension(1150, 840));
 
-        label.setFont(new java.awt.Font("Khmer MN", 1, 24)); // NOI18N
+        label.setFont(new java.awt.Font("Khmer MN", 1, 36)); // NOI18N
+        label.setForeground(new java.awt.Color(204, 255, 255));
         label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-researcher-64.png"))); // NOI18N
         label.setText("Researcher Dashboard");
 
-        Researcher.setFont(new java.awt.Font("Khmer MN", 1, 14)); // NOI18N
+        Researcher.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
 
-        viewFeedback.setBackground(new java.awt.Color(0, 51, 153));
+        viewFeedback.setBackground(new java.awt.Color(0, 102, 153));
         viewFeedback.setPreferredSize(new java.awt.Dimension(1000, 720));
 
         btnGetFeedback.setBackground(new java.awt.Color(255, 204, 0));
-        btnGetFeedback.setFont(new java.awt.Font("Khmer MN", 0, 14)); // NOI18N
+        btnGetFeedback.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
         btnGetFeedback.setText("Click me !!");
         btnGetFeedback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,7 +227,7 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
         });
 
         btnDelete.setBackground(new java.awt.Color(255, 204, 0));
-        btnDelete.setFont(new java.awt.Font("Khmer MN", 0, 14)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,7 +235,8 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnSearch.setFont(new java.awt.Font("Khmer MN", 0, 14)); // NOI18N
+        btnSearch.setBackground(new java.awt.Color(204, 255, 255));
+        btnSearch.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,7 +244,8 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
             }
         });
 
-        txtSearch.setFont(new java.awt.Font("Khmer MN", 0, 14)); // NOI18N
+        txtSearch.setBackground(new java.awt.Color(204, 255, 255));
+        txtSearch.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
         txtSearch.setText("Enter Id or Title");
 
         tblViewIdea.setBackground(new java.awt.Color(232, 255, 254));
@@ -266,9 +271,9 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
         jScrollPane4.setViewportView(tblViewIdea);
 
         LayerVisible.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
-        LayerVisible.setFont(new java.awt.Font("Khmer MN", 1, 14)); // NOI18N
+        LayerVisible.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
 
-        Feedback.setBackground(new java.awt.Color(204, 204, 255));
+        Feedback.setBackground(new java.awt.Color(0, 102, 153));
         Feedback.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         feedbackScroll.setPreferredSize(new java.awt.Dimension(440, 380));
@@ -299,19 +304,19 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
         Feedback.setLayout(FeedbackLayout);
         FeedbackLayout.setHorizontalGroup(
             FeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(feedbackScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 1134, Short.MAX_VALUE)
+            .addComponent(feedbackScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 1139, Short.MAX_VALUE)
         );
         FeedbackLayout.setVerticalGroup(
             FeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FeedbackLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(feedbackScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         LayerVisible.addTab("Feedbacks", Feedback);
 
-        update.setBackground(new java.awt.Color(204, 204, 255));
+        update.setBackground(new java.awt.Color(204, 255, 255));
 
         txtTitle2.setEnabled(false);
 
@@ -394,7 +399,7 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(69, 95, Short.MAX_VALUE)
+                .addGap(69, 100, Short.MAX_VALUE)
                 .addGroup(updateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(updateLayout.createSequentialGroup()
                         .addComponent(btnUpdate)
@@ -416,7 +421,7 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(updateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(updateLayout.createSequentialGroup()
-                        .addGap(0, 78, Short.MAX_VALUE)
+                        .addGap(0, 58, Short.MAX_VALUE)
                         .addGroup(updateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ideaImg1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblImg1))
@@ -451,7 +456,7 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
 
         LayerVisible.addTab("Update Idea", update);
 
-        jLabel14.setFont(new java.awt.Font("Khmer MN", 0, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 204, 0));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel14.setText("Selected Idea..");
@@ -469,8 +474,8 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
             .addComponent(jScrollPane4)
             .addComponent(LayerVisible)
             .addGroup(viewFeedbackLayout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(109, 109, 109)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnGetFeedback)
                 .addGap(316, 316, 316)
@@ -497,30 +502,30 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
 
         Researcher.addTab("View Feedback", viewFeedback);
 
-        addIdea.setBackground(new java.awt.Color(0, 102, 204));
+        addIdea.setBackground(new java.awt.Color(204, 255, 255));
         addIdea.setPreferredSize(new java.awt.Dimension(1100, 750));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Khmer MN", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 102, 153));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Description:");
 
         lblImg.setBackground(new java.awt.Color(255, 255, 255));
-        lblImg.setFont(new java.awt.Font("Khmer MN", 0, 18)); // NOI18N
-        lblImg.setForeground(new java.awt.Color(255, 255, 255));
+        lblImg.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
+        lblImg.setForeground(new java.awt.Color(0, 102, 153));
         lblImg.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblImg.setText("Image:");
 
         ideaImg.setBackground(new java.awt.Color(255, 255, 255));
-        ideaImg.setFont(new java.awt.Font("Khmer MN", 0, 18)); // NOI18N
-        ideaImg.setForeground(new java.awt.Color(255, 255, 255));
+        ideaImg.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
+        ideaImg.setForeground(new java.awt.Color(0, 102, 153));
         ideaImg.setText("<No Image>");
         ideaImg.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         ideaImg.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         btnAttach2.setBackground(new java.awt.Color(255, 204, 0));
-        btnAttach2.setFont(new java.awt.Font("Khmer MN", 0, 14)); // NOI18N
+        btnAttach2.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
         btnAttach2.setText("Attach");
         btnAttach2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -529,7 +534,7 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
         });
 
         btnRemove.setBackground(new java.awt.Color(255, 204, 0));
-        btnRemove.setFont(new java.awt.Font("Khmer MN", 0, 14)); // NOI18N
+        btnRemove.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
         btnRemove.setText("Remove");
         btnRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -538,7 +543,7 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
         });
 
         btnAdd.setBackground(new java.awt.Color(255, 204, 102));
-        btnAdd.setFont(new java.awt.Font("Khmer MN", 0, 14)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
         btnAdd.setText("Add Idea");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -546,8 +551,8 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Khmer MN", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 102, 153));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("Title:");
 
@@ -588,7 +593,7 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
                     .addGroup(addIdeaLayout.createSequentialGroup()
                         .addGap(488, 488, 488)
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addContainerGap(334, Short.MAX_VALUE))
         );
         addIdeaLayout.setVerticalGroup(
             addIdeaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -621,10 +626,12 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
 
         Researcher.addTab("Add Idea", addIdea);
 
-        Blog.setBackground(new java.awt.Color(0, 51, 153));
+        Blog.setBackground(new java.awt.Color(0, 102, 153));
         Blog.setPreferredSize(new java.awt.Dimension(1100, 750));
 
-        btnSearch1.setFont(new java.awt.Font("Khmer MN", 0, 14)); // NOI18N
+        btnSearch1.setBackground(new java.awt.Color(204, 255, 255));
+        btnSearch1.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
+        btnSearch1.setForeground(new java.awt.Color(0, 102, 153));
         btnSearch1.setText("Search");
         btnSearch1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -632,11 +639,13 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
             }
         });
 
-        txtSearch1.setFont(new java.awt.Font("Khmer MN", 0, 14)); // NOI18N
+        txtSearch1.setBackground(new java.awt.Color(204, 255, 255));
+        txtSearch1.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
+        txtSearch1.setForeground(new java.awt.Color(0, 102, 153));
         txtSearch1.setText("Enter Id or title");
 
         btnGetFeedback1.setBackground(new java.awt.Color(255, 204, 0));
-        btnGetFeedback1.setFont(new java.awt.Font("Khmer MN", 0, 14)); // NOI18N
+        btnGetFeedback1.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
         btnGetFeedback1.setText("click me!!");
         btnGetFeedback1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -666,9 +675,9 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
         });
         jScrollPane9.setViewportView(tblViewIdea1);
 
-        Feedbacks.setFont(new java.awt.Font("Khmer MN", 1, 14)); // NOI18N
+        Feedbacks.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 153));
 
         tblViewFeedback1.setBackground(new java.awt.Color(232, 255, 254));
         tblViewFeedback1.setModel(new javax.swing.table.DefaultTableModel(
@@ -696,19 +705,19 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(feedbackScroll1, javax.swing.GroupLayout.DEFAULT_SIZE, 1138, Short.MAX_VALUE)
+            .addComponent(feedbackScroll1, javax.swing.GroupLayout.DEFAULT_SIZE, 1143, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(feedbackScroll1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(293, Short.MAX_VALUE))
         );
 
         Feedbacks.addTab("Feedbacks ", jPanel1);
 
-        View.setBackground(new java.awt.Color(204, 204, 255));
+        View.setBackground(new java.awt.Color(232, 255, 254));
 
         txtTitle3.setEnabled(false);
 
@@ -751,7 +760,7 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 101, Short.MAX_VALUE)
+                .addGap(0, 106, Short.MAX_VALUE)
                 .addComponent(lblImg2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ideaImg2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -773,7 +782,7 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewLayout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
+                .addContainerGap(242, Short.MAX_VALUE)
                 .addGroup(ViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ideaImg2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblImg2))
@@ -782,7 +791,7 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
 
         Feedbacks.addTab("View Idea", View);
 
-        add.setBackground(new java.awt.Color(204, 204, 255));
+        add.setBackground(new java.awt.Color(232, 255, 254));
 
         jLabel10.setFont(new java.awt.Font("Khmer MN", 0, 18)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -820,7 +829,7 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(52, 52, 52)
                 .addComponent(btnSave2)
-                .addContainerGap(489, Short.MAX_VALUE))
+                .addContainerGap(494, Short.MAX_VALUE))
         );
         addLayout.setVerticalGroup(
             addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -838,7 +847,7 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
                     .addGroup(addLayout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addComponent(btnSave2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(244, Short.MAX_VALUE))
         );
 
         Feedbacks.addTab("Add Feedback", add);
@@ -855,9 +864,9 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BlogLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSearch1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(32, 32, 32)
                 .addComponent(txtSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(144, 144, 144))
+                .addGap(23, 23, 23))
             .addGroup(BlogLayout.createSequentialGroup()
                 .addGap(723, 723, 723)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -881,7 +890,7 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
                     .addComponent(btnGetFeedback1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Feedbacks, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Feedbacks, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
 
@@ -894,25 +903,25 @@ public class ResearcherDashboardJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(448, 448, 448)
-                .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(175, 175, 175)
+                .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtResearcherName, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
+                .addGap(166, 166, 166))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Researcher, javax.swing.GroupLayout.DEFAULT_SIZE, 1138, Short.MAX_VALUE)
+                .addComponent(Researcher, javax.swing.GroupLayout.DEFAULT_SIZE, 1143, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtResearcherName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtResearcherName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Researcher, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     

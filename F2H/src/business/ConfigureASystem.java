@@ -8,7 +8,6 @@ import business.Idea.Idea;
 import business.customer.Cart;
 import business.customer.Order;
 
-import business.customer.Wallet;
 
 import business.employee.DeliveryEmp;
 import business.employee.ResearcherEmp;
@@ -53,7 +52,6 @@ import java.awt.Component;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -81,7 +79,7 @@ public class ConfigureASystem {
         BusinessAdmin Admin = new BusinessAdmin();
         business.getEmployeeDirectory().createEmployee(Admin);
         Person person0 = new Person("Likith", "Kumar", "likithakumar@gmail.com", "+1-(857)-122-3648", "74 Brighton, Boston");
-         business.getPersonDirectory().addNewPerson(person0);
+        business.getPersonDirectory().addNewPerson(person0);
         UserAccount admin = business.getUserAccountDirectory().createUserAccount(person0, "esadmin", "esadmin", Admin, new AdminRole());
 
         //Farmer Account
@@ -413,42 +411,42 @@ public class ConfigureASystem {
         ImageIcon carrot = new ImageIcon(ConfigureASystem.class.getResource("/ui/productImages/Carrot.jpeg"));
         Product janeCarrot = new Product("Carrot", "Vegetable", 3, 30, "Freshly harvested carrots with a vibrant orange color and crunchy texture", carrot, "Jane", Product.Status.REVIEWED, Double.valueOf("3.00"));
         business.getProductDirectory().addProduct(janeCarrot);
-        janeCarrot.setDescription("Very good quality and fresh");              
+        janeCarrot.setDescription("Very good quality and fresh");
         Product michaelCarrot = new Product("Carrot", "Vegetable", 3.5, 50, "Organically grown carrots with a sweet and earthy flavor", carrot, "Michael", Product.Status.REVIEWED, Double.valueOf("3.40"));
         business.getProductDirectory().addProduct(michaelCarrot);
-        michaelCarrot.setDescription("Not very good quality"); 
-        
+        michaelCarrot.setDescription("Not very good quality");
+
         ImageIcon greenchilli = new ImageIcon(ConfigureASystem.class.getResource("/ui/productImages/GreenChilli.jpg"));
         Product emilyGreenChilli = new Product("Green Chilli", "Vegetable", 2.0, 200, "Fresh and spicy green chillies for adding a kick to your dishes", greenchilli, "Emily", Product.Status.REVIEWED, Double.valueOf("2.00"));
         business.getProductDirectory().addProduct(emilyGreenChilli);
-        emilyGreenChilli.setDescription("Very good quality"); 
+        emilyGreenChilli.setDescription("Very good quality");
         Product sarahGreenChilli = new Product("Green Chilli", "Vegetable", 2.2, 180, "Organically grown green chillies with a vibrant color and intense flavor", greenchilli, "Sarah", Product.Status.TO_BE_REVIEWED, Double.valueOf("0.00"));
         business.getProductDirectory().addProduct(sarahGreenChilli);
 
         ImageIcon spinach = new ImageIcon(ConfigureASystem.class.getResource("/ui/productImages/Spinach.jpg"));
-        Product davidSpinach = new Product("Spinach", "Vegetable", 5, 40, "Freshly harvested spinach leaves, perfect for salads and smoothies", spinach, "David", Product.Status.TO_BE_REVIEWED, Double.valueOf("0.00"));
+        Product davidSpinach = new Product("Spinach", "Vegetable", 5, 40, "Freshly harvested spinach leaves, perfect for salads and smoothies", spinach, "David", Product.Status.TO_BE_REVIEWED, Double.valueOf("5.00"));
         business.getProductDirectory().addProduct(davidSpinach);
         Product sarahSpinach = new Product("Spinach", "Vegetable", 5.5, 35, "Nutrient-rich organic spinach, great for adding to soups and stir-fries", spinach, "Sarah", Product.Status.REVIEWED, Double.valueOf("5.50"));
         business.getProductDirectory().addProduct(sarahSpinach);
-        sarahSpinach.setDescription("Very good quality"); 
+        sarahSpinach.setDescription("Very good quality");
 
         ImageIcon bellpepper = new ImageIcon(ConfigureASystem.class.getResource("/ui/productImages/Bellpepper.jpeg"));
         Product danielBellPepper = new Product("Bell Pepper", "Vegetable", 5, 40, "Freshly harvested bell peppers, perfect for salads and stir-fries", bellpepper, "Daniel", Product.Status.REVIEWED, Double.valueOf("5.00"));
         business.getProductDirectory().addProduct(danielBellPepper);
-        danielBellPepper.setDescription("Very good quality"); 
+        danielBellPepper.setDescription("Very good quality");
         Product ashleyBellPepper = new Product("Bell Pepper", "Vegetable", 5.5, 75, "Nutrient-rich organic bell peppers, great for adding to soups and sauces", bellpepper, "Ashley", Product.Status.REVIEWED, Double.valueOf("4.00"));
         business.getProductDirectory().addProduct(ashleyBellPepper);
-        sarahSpinach.setDescription("Very bad quality"); 
+        sarahSpinach.setDescription("Very bad quality");
         Product janeBellPepper = new Product("Bell Pepper", "Vegetable", 4, 60, "Fresh and crunchy bell peppers, ideal for grilling and stuffing", bellpepper, "Jane", Product.Status.TO_BE_REVIEWED, Double.valueOf("0.00"));
         business.getProductDirectory().addProduct(janeBellPepper);
 
         ImageIcon brocoli = new ImageIcon(ConfigureASystem.class.getResource("/ui/productImages/Brocoli.jpeg"));
         Product danielBroccoli = new Product("Broccoli", "Vegetable", 4, 100, "Freshly harvested broccoli florets, perfect for salads and stir-fries", brocoli, "Daniel", Product.Status.REVIEWED, Double.valueOf("4.00"));
         business.getProductDirectory().addProduct(danielBroccoli);
-        danielBroccoli.setDescription("Very good quality"); 
+        danielBroccoli.setDescription("Very good quality");
         Product davidBroccoli = new Product("Broccoli", "Vegetable", 5, 25, "Nutrient-rich organic broccoli, great for adding to soups and side dishes", brocoli, "David", Product.Status.REVIEWED, Double.valueOf("4.00"));
         business.getProductDirectory().addProduct(davidBroccoli);
-        davidBroccoli.setDescription("Not very fresh"); 
+        davidBroccoli.setDescription("Not very fresh");
         Product janeBroccoli = new Product("Broccoli", "Vegetable", 3.5, 10, "Fresh and crunchy broccoli, ideal for steaming and roasting", brocoli, "Jane", Product.Status.TO_BE_REVIEWED, Double.valueOf("0.00"));
         business.getProductDirectory().addProduct(janeBroccoli);
 
@@ -457,18 +455,18 @@ public class ConfigureASystem {
         business.getProductDirectory().addProduct(michaelApple);
         Product davidApple = new Product("Apple", "Fruit", 5, 25, "Organic apples with a sweet and tart flavor, ideal for salads and desserts", apple, "David", Product.Status.REVIEWED, Double.valueOf("5.00"));
         business.getProductDirectory().addProduct(davidApple);
-        davidApple.setDescription("Very fresh and premium quality"); 
+        davidApple.setDescription("Very fresh and premium quality");
         Product jessicaApple = new Product("Apple", "Fruit", 3.5, 10, "Fresh and crunchy apples, great for making cider and sauces", apple, "Jessica", Product.Status.REVIEWED, Double.valueOf("3.50"));
         business.getProductDirectory().addProduct(jessicaApple);
-        jessicaApple.setDescription("Good quality & fresh"); 
+        jessicaApple.setDescription("Good quality & fresh");
 
         ImageIcon banana = new ImageIcon(ConfigureASystem.class.getResource("/ui/productImages/Banana.jpg"));
         Product matthewBanana = new Product("Banana", "Fruit", 3, 80, "Organic bananas with a creamy texture and sweet taste, perfect for smoothies and desserts", banana, "Matthew", Product.Status.REVIEWED, Double.valueOf("3.00"));
         business.getProductDirectory().addProduct(matthewBanana);
-        matthewBanana.setDescription("Very fresh and good quality"); 
+        matthewBanana.setDescription("Very fresh and good quality");
         Product ashleyBanana = new Product("Banana", "Fruit", 2.5, 50, "Fresh and nutritious organic bananas, ideal for a healthy snack or breakfast", banana, "Ashley", Product.Status.REVIEWED, Double.valueOf("2.50"));
         business.getProductDirectory().addProduct(ashleyBanana);
-        ashleyBanana.setDescription("Good quality"); 
+        ashleyBanana.setDescription("Good quality");
         Product jessicaBanana = new Product("Banana", "Fruit", 2, 30, "Certified organic bananas, sustainably grown and packed with essential nutrients", banana, "Jessica", Product.Status.TO_BE_REVIEWED, Double.valueOf("0.00"));
         business.getProductDirectory().addProduct(jessicaBanana);
 
@@ -477,11 +475,11 @@ public class ConfigureASystem {
         business.getProductDirectory().addProduct(matthewPineapple);
         Product davidPineapple = new Product("Pineapple", "Fruit", 4, 40, "Sweet and succulent organic pineapples, perfect for cocktails and desserts", pineapple, "David", Product.Status.REVIEWED, Double.valueOf("3.00"));
         business.getProductDirectory().addProduct(davidPineapple);
-        davidPineapple.setDescription("Bad quality"); 
+        davidPineapple.setDescription("Bad quality");
         Product rameshPineapple = new Product("Pineapple", "Fruit", 3, 20, "Organic pineapples, freshly harvested and full of tropical goodness", pineapple, "Ramesh", Product.Status.REVIEWED, Double.valueOf("3.00"));
         business.getProductDirectory().addProduct(rameshPineapple);
-        rameshPineapple.setDescription("Good quality"); 
-        
+        rameshPineapple.setDescription("Good quality");
+
         ImageIcon orange = new ImageIcon(ConfigureASystem.class.getResource("/ui/productImages/Orange.jpeg"));
         Product michaelOrange = new Product("Orange", "Fruit", 3.5, 80, "Organic oranges, bursting with tangy sweetness and rich in vitamin C", orange, "Michael", Product.Status.REVIEWED, Double.valueOf("3.50"));
         business.getProductDirectory().addProduct(michaelOrange);
@@ -521,7 +519,7 @@ public class ConfigureASystem {
         Product janeMilk = new Product("Milk", "Dairy", 5, 25, "Fresh organic milk with a smooth and creamy texture, great for various culinary uses", milk, "Jane", Product.Status.REVIEWED, Double.valueOf("3.00"));
         business.getProductDirectory().addProduct(janeMilk);
         janeMilk.setDescription("Doesn't look fresh");
-        
+
         ImageIcon rawhoney = new ImageIcon(ConfigureASystem.class.getResource("/ui/productImages/RawHoney.jpg"));
         Product mathewHoney = new Product("Honey", "Honey", 5, 50, "Organic raw honey with rich flavor and natural sweetness, perfect for sweetening beverages and desserts", rawhoney, "Mathew", Product.Status.REVIEWED, Double.valueOf("5.00"));
         business.getProductDirectory().addProduct(mathewHoney);
@@ -570,7 +568,7 @@ public class ConfigureASystem {
         Product michaelWheatGrain = new Product("Wheat Grain", "Grains", 7, 90, "Pesticide-free wheat grains with a wholesome taste and nutritious profile, ideal for homemade bread and pastries", wheatgrain, "Michael", Product.Status.REVIEWED, Double.valueOf("7.00"));
         business.getProductDirectory().addProduct(michaelWheatGrain);
         michaelWheatGrain.setDescription("High quality");
-        
+
         ImageIcon blackrice = new ImageIcon(ConfigureASystem.class.getResource("/ui/productImages/Blackrice.jpeg"));
         Product emilyBlackRice = new Product("Black Rice", "Grains", 10, 150, "Premium quality organic black rice known for its nutty flavor and rich texture, perfect for various culinary creations", blackrice, "Emily", Product.Status.TO_BE_REVIEWED, Double.valueOf("0.00"));
         business.getProductDirectory().addProduct(emilyBlackRice);
@@ -590,284 +588,198 @@ public class ConfigureASystem {
         emilyRagiMillet.setDescription("Not premium quality");
         Product davidRagiMillet = new Product("Ragi Millet", "Grains", 15, 30, "Locally sourced organic ragi millet with a distinct flavor and texture, great for incorporating into a balanced diet", ragimillet, "David", Product.Status.TO_BE_REVIEWED, Double.valueOf("0.00"));
         business.getProductDirectory().addProduct(davidRagiMillet);
-        
-        
-        
-        Cart cart1 = new Cart("s");
-        
-        Product cartProduct1 = new Product(rameshTomato.getProductId(), rameshTomato.getProductname(), rameshTomato.getOfferedPrice(), rameshTomato.getQuantity());
-                
-                cartProduct1.setFarmersId(rameshTomato.getFarmersId());
-                cartProduct1.setQuantity(5);
-                cartProduct1.setCategory(rameshTomato.getCategory());
-                double totalPrice1 = cartProduct1.getQuantity() * rameshTomato.getOfferedPrice();
-                
-                cart1.addProduct(rameshTomato.getProductId(), cartProduct1);
-                
-                
-           Product cartProduct2 = new Product(emilyPotato.getProductId(), emilyPotato.getProductname(), emilyPotato.getOfferedPrice(), emilyPotato.getQuantity());
-                
-                cartProduct2.setFarmersId(emilyPotato.getFarmersId());
-                cartProduct2.setQuantity(2);
-                cartProduct2.setCategory(emilyPotato.getCategory());
-                double totalPrice2 = cartProduct2.getQuantity() * emilyPotato.getOfferedPrice();
-                
-                cart1.addProduct(emilyPotato.getProductId(), cartProduct2);
-      double  totalCartPrice = totalPrice1 + totalPrice2;   
-       System.out.println("Total Price: " +totalCartPrice);
-        Order order1 = new Order("s", new Date(), totalCartPrice, DeliveryWorkRequest.Status.OrderPlaced.toString(), cart1);
-            Order.ordersList.add(order1); 
-            
-            DeliveryWorkRequest deliveryRequest = new DeliveryWorkRequest();
-            deliveryRequest.setMessage("Please deliver the package to the customer.");
-            deliveryRequest.setSender(customer1);
-            deliveryRequest.setStatus(DeliveryWorkRequest.Status.OrderPlaced.toString());
-            deliveryRequest.setDeliveryAddress(customer1.getPerson().getaddress());
-            deliveryRequest.setCustomerName(customer1.getUsername());
-            deliveryRequest.setOrder(order1);
-            ArrayList<Network> networkList = business.getNetworkList();
-            for (Network network : networkList) {
-                ArrayList<Enterprise> enterpriseList = network.getEnterpriseDirectory().getEnterpriseList();
-                for (Enterprise enterprise : enterpriseList) {
-                    if (enterprise instanceof SalesAndDeliveryEnterprise) {
-                        for (Organization organization : enterprise.getOrganizationDirectory().getOrganisationList()) {
-                            if (organization instanceof DeliveryOrganization) {
-                                organization.getWorkQueue().getWorkRequestList().add(deliveryRequest);
-                                customer1.getWorkQueue().getWorkRequestList().add(deliveryRequest);
 
-                            }
+        Cart cart1 = new Cart("s");
+
+        Product cartProduct1 = new Product(rameshTomato.getProductId(), rameshTomato.getProductname(), rameshTomato.getOfferedPrice(), rameshTomato.getQuantity());
+
+        cartProduct1.setFarmersId(rameshTomato.getFarmersId());
+        cartProduct1.setQuantity(5);
+        cartProduct1.setCategory(rameshTomato.getCategory());
+        double totalPrice1 = cartProduct1.getQuantity() * rameshTomato.getOfferedPrice();
+
+        cart1.addProduct(rameshTomato.getProductId(), cartProduct1);
+
+        Product cartProduct2 = new Product(emilyPotato.getProductId(), emilyPotato.getProductname(), emilyPotato.getOfferedPrice(), emilyPotato.getQuantity());
+
+        cartProduct2.setFarmersId(emilyPotato.getFarmersId());
+        cartProduct2.setQuantity(2);
+        cartProduct2.setCategory(emilyPotato.getCategory());
+        double totalPrice2 = cartProduct2.getQuantity() * emilyPotato.getOfferedPrice();
+
+        cart1.addProduct(emilyPotato.getProductId(), cartProduct2);
+        double totalCartPrice = totalPrice1 + totalPrice2;
+        System.out.println("Total Price: " + totalCartPrice);
+        Order order1 = new Order("s", new Date(), totalCartPrice, DeliveryWorkRequest.Status.OrderPlaced.toString(), cart1);
+        Order.ordersList.add(order1);
+
+        DeliveryWorkRequest deliveryRequest = new DeliveryWorkRequest();
+        deliveryRequest.setMessage("Please deliver the package to the customer.");
+        deliveryRequest.setSender(customer1);
+        deliveryRequest.setStatus(DeliveryWorkRequest.Status.OrderPlaced.toString());
+        deliveryRequest.setDeliveryAddress(customer1.getPerson().getaddress());
+        deliveryRequest.setCustomerName(customer1.getUsername());
+        deliveryRequest.setOrder(order1);
+        ArrayList<Network> networkList = business.getNetworkList();
+        for (Network network : networkList) {
+            ArrayList<Enterprise> enterpriseList = network.getEnterpriseDirectory().getEnterpriseList();
+            for (Enterprise enterprise : enterpriseList) {
+                if (enterprise instanceof SalesAndDeliveryEnterprise) {
+                    for (Organization organization : enterprise.getOrganizationDirectory().getOrganisationList()) {
+                        if (organization instanceof DeliveryOrganization) {
+                            organization.getWorkQueue().getWorkRequestList().add(deliveryRequest);
+                            customer1.getWorkQueue().getWorkRequestList().add(deliveryRequest);
+
                         }
                     }
                 }
-            }  
-            
-       Cart cart2 = new Cart("s");
-        
+            }
+        }
+
+        Cart cart2 = new Cart("s");
+
         Product cartProduct11 = new Product(rameshPineapple.getProductId(), rameshPineapple.getProductname(), rameshPineapple.getOfferedPrice(), rameshPineapple.getQuantity());
-                
-                cartProduct11.setFarmersId(rameshPineapple.getFarmersId());
-                cartProduct11.setQuantity(5);
-                cartProduct11.setCategory(rameshPineapple.getCategory());
-                double totalPrice11 = cartProduct11.getQuantity() * rameshPineapple.getOfferedPrice();
-                
-                cart2.addProduct(rameshPineapple.getProductId(), cartProduct11);
-                
-                
-           Product cartProduct12 = new Product(emilyRagiMillet.getProductId(), emilyRagiMillet.getProductname(), emilyRagiMillet.getOfferedPrice(), emilyRagiMillet.getQuantity());
-                
-                cartProduct12.setFarmersId(emilyRagiMillet.getFarmersId());
-                cartProduct12.setQuantity(4);
-                cartProduct12.setCategory(emilyRagiMillet.getCategory());
-                double totalPrice12 = cartProduct12.getQuantity() * emilyRagiMillet.getOfferedPrice();
-                
-                cart2.addProduct(emilyRagiMillet.getProductId(), cartProduct12);
-      double  totalCartPrice1 = totalPrice11 + totalPrice12;   
-       System.out.println("Total Price: " +totalCartPrice1);
+
+        cartProduct11.setFarmersId(rameshPineapple.getFarmersId());
+        cartProduct11.setQuantity(5);
+        cartProduct11.setCategory(rameshPineapple.getCategory());
+        double totalPrice11 = cartProduct11.getQuantity() * rameshPineapple.getOfferedPrice();
+
+        cart2.addProduct(rameshPineapple.getProductId(), cartProduct11);
+
+        Product cartProduct12 = new Product(emilyRagiMillet.getProductId(), emilyRagiMillet.getProductname(), emilyRagiMillet.getOfferedPrice(), emilyRagiMillet.getQuantity());
+
+        cartProduct12.setFarmersId(emilyRagiMillet.getFarmersId());
+        cartProduct12.setQuantity(4);
+        cartProduct12.setCategory(emilyRagiMillet.getCategory());
+        double totalPrice12 = cartProduct12.getQuantity() * emilyRagiMillet.getOfferedPrice();
+
+        cart2.addProduct(emilyRagiMillet.getProductId(), cartProduct12);
+        double totalCartPrice1 = totalPrice11 + totalPrice12;
+        System.out.println("Total Price: " + totalCartPrice1);
         Order order2 = new Order("s", new Date(), totalCartPrice1, DeliveryWorkRequest.Status.OrderPlaced.toString(), cart2);
-            Order.ordersList.add(order2); 
-            
-          
-            Cart cart3 = new Cart("s");
-        
-        Product cartProduct13 = new Product( christopherBrownEggs.getProductId(), christopherBrownEggs.getProductname(), christopherBrownEggs.getOfferedPrice(), christopherBrownEggs.getQuantity());
-                
-                cartProduct13.setFarmersId(christopherBrownEggs.getFarmersId());
-                cartProduct13.setQuantity(12);
-                cartProduct13.setCategory(christopherBrownEggs.getCategory());
-                double totalPrice13 = cartProduct1.getQuantity() * christopherBrownEggs.getOfferedPrice();
-                cart3.addProduct(christopherBrownEggs.getProductId(), cartProduct13);
-                
-                
-           Product cartProduct14 = new Product(mathewHoney.getProductId(), mathewHoney.getProductname(), mathewHoney.getOfferedPrice(), mathewHoney.getQuantity());
-                
-                cartProduct14.setFarmersId(mathewHoney.getFarmersId());
-                cartProduct14.setQuantity(2);
-                cartProduct14.setCategory(mathewHoney.getCategory());
-                double totalPrice14 = cartProduct14.getQuantity() * mathewHoney.getOfferedPrice();
-                cart3.addProduct(mathewHoney.getProductId(), cartProduct14);
-                
-           Product cartProduct15 = new Product(sarahSpices.getProductId(), sarahSpices.getProductname(), sarahSpices.getOfferedPrice(), sarahSpices.getQuantity());
-                
-                cartProduct15.setFarmersId(sarahSpices.getFarmersId());
-                cartProduct15.setQuantity(6);
-                cartProduct15.setCategory(sarahSpices.getCategory());
-                double totalPrice15 = cartProduct15.getQuantity() * sarahSpices.getOfferedPrice();
-                cart3.addProduct(sarahSpices.getProductId(), cartProduct15); 
-                
-      double  totalCartPrice2 = totalPrice13 + totalPrice14 + totalPrice15;   
-       System.out.println("Total Price: " +totalCartPrice2);
+        Order.ordersList.add(order2);
+
+        Cart cart3 = new Cart("s");
+
+        Product cartProduct13 = new Product(christopherBrownEggs.getProductId(), christopherBrownEggs.getProductname(), christopherBrownEggs.getOfferedPrice(), christopherBrownEggs.getQuantity());
+
+        cartProduct13.setFarmersId(christopherBrownEggs.getFarmersId());
+        cartProduct13.setQuantity(12);
+        cartProduct13.setCategory(christopherBrownEggs.getCategory());
+        double totalPrice13 = cartProduct1.getQuantity() * christopherBrownEggs.getOfferedPrice();
+        cart3.addProduct(christopherBrownEggs.getProductId(), cartProduct13);
+
+        Product cartProduct14 = new Product(mathewHoney.getProductId(), mathewHoney.getProductname(), mathewHoney.getOfferedPrice(), mathewHoney.getQuantity());
+
+        cartProduct14.setFarmersId(mathewHoney.getFarmersId());
+        cartProduct14.setQuantity(2);
+        cartProduct14.setCategory(mathewHoney.getCategory());
+        double totalPrice14 = cartProduct14.getQuantity() * mathewHoney.getOfferedPrice();
+        cart3.addProduct(mathewHoney.getProductId(), cartProduct14);
+
+        Product cartProduct15 = new Product(sarahSpices.getProductId(), sarahSpices.getProductname(), sarahSpices.getOfferedPrice(), sarahSpices.getQuantity());
+
+        cartProduct15.setFarmersId(sarahSpices.getFarmersId());
+        cartProduct15.setQuantity(6);
+        cartProduct15.setCategory(sarahSpices.getCategory());
+        double totalPrice15 = cartProduct15.getQuantity() * sarahSpices.getOfferedPrice();
+        cart3.addProduct(sarahSpices.getProductId(), cartProduct15);
+
+        double totalCartPrice2 = totalPrice13 + totalPrice14 + totalPrice15;
+        System.out.println("Total Price: " + totalCartPrice2);
         Order order3 = new Order("s", new Date(), totalCartPrice2, DeliveryWorkRequest.Status.OrderPlaced.toString(), cart3);
-            Order.ordersList.add(order3); 
+        Order.ordersList.add(order3);
 
+        Cart cart4 = new Cart("s");
 
-            Cart cart4 = new Cart("s");
-        
         Product cartProduct16 = new Product(janeMilk.getProductId(), janeMilk.getProductname(), janeMilk.getOfferedPrice(), janeMilk.getQuantity());
-                
-                cartProduct16.setFarmersId(janeMilk.getFarmersId());
-                cartProduct16.setQuantity(5);
-                cartProduct16.setCategory(janeMilk.getCategory());
-                double totalPrice16 = cartProduct16.getQuantity() * janeMilk.getOfferedPrice();
-                
-                cart4.addProduct(janeMilk.getProductId(), cartProduct16);
-                
-                
-           Product cartProduct17 = new Product(davidApple.getProductId(), davidApple.getProductname(), davidApple.getOfferedPrice(), davidApple.getQuantity());
-                
-                cartProduct17.setFarmersId(davidApple.getFarmersId());
-                cartProduct17.setQuantity(12);
-                cartProduct17.setCategory(davidApple.getCategory());
-                double totalPrice17 = cartProduct17.getQuantity() * davidApple.getOfferedPrice();
-           cart4.addProduct(davidApple.getProductId(), cartProduct17);
-           
-             Product cartProduct18 = new Product(matthewBanana.getProductId(), matthewBanana.getProductname(), matthewBanana.getOfferedPrice(), matthewBanana.getQuantity());
-                
-                cartProduct18.setFarmersId(matthewBanana.getFarmersId());
-                cartProduct18.setQuantity(12);
-                cartProduct18.setCategory(matthewBanana.getCategory());
-                double totalPrice18 = cartProduct18.getQuantity() * matthewBanana.getOfferedPrice();
-           cart4.addProduct(matthewBanana.getProductId(), cartProduct18);
-           
-             Product cartProduct19 = new Product(davidBlackRice.getProductId(), davidBlackRice.getProductname(), davidBlackRice.getOfferedPrice(), davidBlackRice.getQuantity());
-                
-                cartProduct19.setFarmersId(davidBlackRice.getFarmersId());
-                cartProduct19.setQuantity(1);
-                cartProduct19.setCategory(davidBlackRice.getCategory());
-                double totalPrice19 = cartProduct19.getQuantity() * davidBlackRice.getOfferedPrice();
-           cart4.addProduct(davidBlackRice.getProductId(), cartProduct19); 
-           
-      double  totalCartPrice3 = totalPrice16 + totalPrice17 + totalPrice18 + totalPrice19;   
+
+        cartProduct16.setFarmersId(janeMilk.getFarmersId());
+        cartProduct16.setQuantity(5);
+        cartProduct16.setCategory(janeMilk.getCategory());
+        double totalPrice16 = cartProduct16.getQuantity() * janeMilk.getOfferedPrice();
+
+        cart4.addProduct(janeMilk.getProductId(), cartProduct16);
+
+        Product cartProduct17 = new Product(davidApple.getProductId(), davidApple.getProductname(), davidApple.getOfferedPrice(), davidApple.getQuantity());
+
+        cartProduct17.setFarmersId(davidApple.getFarmersId());
+        cartProduct17.setQuantity(12);
+        cartProduct17.setCategory(davidApple.getCategory());
+        double totalPrice17 = cartProduct17.getQuantity() * davidApple.getOfferedPrice();
+        cart4.addProduct(davidApple.getProductId(), cartProduct17);
+
+        Product cartProduct18 = new Product(matthewBanana.getProductId(), matthewBanana.getProductname(), matthewBanana.getOfferedPrice(), matthewBanana.getQuantity());
+
+        cartProduct18.setFarmersId(matthewBanana.getFarmersId());
+        cartProduct18.setQuantity(12);
+        cartProduct18.setCategory(matthewBanana.getCategory());
+        double totalPrice18 = cartProduct18.getQuantity() * matthewBanana.getOfferedPrice();
+        cart4.addProduct(matthewBanana.getProductId(), cartProduct18);
+
+        Product cartProduct19 = new Product(davidBlackRice.getProductId(), davidBlackRice.getProductname(), davidBlackRice.getOfferedPrice(), davidBlackRice.getQuantity());
+
+        cartProduct19.setFarmersId(davidBlackRice.getFarmersId());
+        cartProduct19.setQuantity(1);
+        cartProduct19.setCategory(davidBlackRice.getCategory());
+        double totalPrice19 = cartProduct19.getQuantity() * davidBlackRice.getOfferedPrice();
+        cart4.addProduct(davidBlackRice.getProductId(), cartProduct19);
+
+        double totalCartPrice3 = totalPrice16 + totalPrice17 + totalPrice18 + totalPrice19;
 
         Order order4 = new Order("s", new Date(), totalCartPrice3, DeliveryWorkRequest.Status.OrderPlaced.toString(), cart4);
-            Order.ordersList.add(order4); 
-            
-  
-            Cart cart5 = new Cart("s");
-        
-        Product cartProduct20 = new Product(christopherEggsAndChicken.getProductId(), christopherEggsAndChicken.getProductname(), christopherEggsAndChicken.getOfferedPrice(), christopherEggsAndChicken.getQuantity());
-                
-                cartProduct20.setFarmersId(christopherEggsAndChicken.getFarmersId());
-                cartProduct20.setQuantity(12);
-                cartProduct20.setCategory(christopherEggsAndChicken.getCategory());
-                double totalPrice20 = cartProduct20.getQuantity() * christopherEggsAndChicken.getOfferedPrice();
-                
-                cart5.addProduct(christopherEggsAndChicken.getProductId(), cartProduct20);
-                
-                
-           Product cartProduct21 = new Product(michaelAvocado.getProductId(), michaelAvocado.getProductname(), michaelAvocado.getOfferedPrice(), michaelAvocado.getQuantity());
-                
-                cartProduct21.setFarmersId(michaelAvocado.getFarmersId());
-                cartProduct21.setQuantity(2);
-                cartProduct21.setCategory(michaelAvocado.getCategory());
-                double totalPrice21 = cartProduct21.getQuantity() * michaelAvocado.getOfferedPrice();
-                
-                cart5.addProduct(michaelAvocado.getProductId(), cartProduct21);
-                
-                           
-           Product cartProduct22 = new Product(ashleyBanana.getProductId(), ashleyBanana.getProductname(), ashleyBanana.getOfferedPrice(), ashleyBanana.getQuantity());
-                
-                cartProduct22.setFarmersId(ashleyBanana.getFarmersId());
-                cartProduct22.setQuantity(2);
-                cartProduct22.setCategory(ashleyBanana.getCategory());
-                double totalPrice22 = cartProduct22.getQuantity() * ashleyBanana.getOfferedPrice();
-                
-                cart5.addProduct(ashleyBanana.getProductId(), cartProduct22);
-                
-           Product cartProduct23 = new Product(rameshCabbage.getProductId(), rameshCabbage.getProductname(), rameshCabbage.getOfferedPrice(), rameshCabbage.getQuantity());
-                
-                cartProduct23.setFarmersId(rameshCabbage.getFarmersId());
-                cartProduct23.setQuantity(2);
-                cartProduct23.setCategory(rameshCabbage.getCategory());
-                double totalPrice23 = cartProduct23.getQuantity() * rameshCabbage.getOfferedPrice();
-                
-                cart5.addProduct(rameshCabbage.getProductId(), cartProduct23);
-                
-      double  totalCartPrice5 = totalPrice20 + totalPrice21 + totalPrice22 + totalPrice23;   
-       System.out.println("Total Price: " +totalCartPrice);
-        Order order5 = new Order("s", new Date(), totalCartPrice5, DeliveryWorkRequest.Status.OrderPlaced.toString(), cart5);
-            Order.ordersList.add(order5); 
-            
- 
-//            Cart cart1 = new Cart("s");
-//        
-//        Product cartProduct1 = new Product(rameshTomato.getProductId(), rameshTomato.getProductname(), rameshTomato.getOfferedPrice(), rameshTomato.getQuantity());
-//                
-//                cartProduct1.setFarmersId(rameshTomato.getFarmersId());
-//                cartProduct1.setQuantity(5);
-//                cartProduct1.setCategory(rameshTomato.getCategory());
-//                double totalPrice1 = cartProduct1.getQuantity() * rameshTomato.getOfferedPrice();
-//                
-//                cart1.addProduct(rameshTomato.getProductId(), cartProduct1);
-//                
-//                
-//           Product cartProduct2 = new Product(emilyPotato.getProductId(), emilyPotato.getProductname(), emilyPotato.getOfferedPrice(), emilyPotato.getQuantity());
-//                
-//                cartProduct2.setFarmersId(emilyPotato.getFarmersId());
-//                cartProduct2.setQuantity(2);
-//                cartProduct2.setCategory(emilyPotato.getCategory());
-//                double totalPrice2 = cartProduct2.getQuantity() * emilyPotato.getOfferedPrice();
-//                
-//                cart1.addProduct(emilyPotato.getProductId(), cartProduct2);
-//      double  totalCartPrice = totalPrice1 + totalPrice2;   
-//       System.out.println("Total Price: " +totalCartPrice);
-//        Order order1 = new Order("s", new Date(), totalCartPrice, DeliveryWorkRequest.Status.OrderPlaced.toString(), cart1);
-//            Order.ordersList.add(order1); 
-//            
-//            DeliveryWorkRequest deliveryRequest = new DeliveryWorkRequest();
-//            deliveryRequest.setMessage("Please deliver the package to the customer.");
-//            deliveryRequest.setSender(customer1);
-//            deliveryRequest.setStatus(DeliveryWorkRequest.Status.OrderPlaced.toString());
-//            deliveryRequest.setDeliveryAddress(customer1.getPerson().getaddress());
-//            deliveryRequest.setCustomerName(customer1.getUsername());
-//            deliveryRequest.setOrder(order1);
-//            ArrayList<Network> networkList = business.getNetworkList();
-//            for (Network network : networkList) {
-//                ArrayList<Enterprise> enterpriseList = network.getEnterpriseDirectory().getEnterpriseList();
-//                for (Enterprise enterprise : enterpriseList) {
-//                    if (enterprise instanceof SalesAndDeliveryEnterprise) {
-//                        for (Organization organization : enterprise.getOrganizationDirectory().getOrganisationList()) {
-//                            if (organization instanceof DeliveryOrganization) {
-//                                organization.getWorkQueue().getWorkRequestList().add(deliveryRequest);
-//                                customer1.getWorkQueue().getWorkRequestList().add(deliveryRequest);
-//
-//                            }
-//                        }
-//                    }
-//                }
-//            }  
-//            
-//            
-//             
-////  for (Map.Entry<Integer, Product> entry : cart.getProductMap().entrySet()) {
-////    Product cartProduct1 = entry.getValue();
-//////    System.out.println("Product ID: " + product.getProductId());
-//////    System.out.println("Product Name: " + product.getProductname());
-//////    System.out.println("Price: " + product.getPrice());
-//////    System.out.println("Quantity: " + product.getQuantity());
-//////    System.out.println("Total Price: " + product.getQuantity() * product.getPrice());
-////    System.out.println("--------------------------------------");
-////    //totalPrice += product.getQuantity() * product.getPrice();
-////}
-//
-//// Print the total amount
-////System.out.println("Total Amount: " + totalPrice);
-//                 
-//               
-//         System.out.println("Cart ID: " + cart.getCartID());
-//        System.out.println("Customer ID: " + cart.getCustomerID());
-//        
+        Order.ordersList.add(order4);
 
+        Cart cart5 = new Cart("s");
+
+        Product cartProduct20 = new Product(christopherEggsAndChicken.getProductId(), christopherEggsAndChicken.getProductname(), christopherEggsAndChicken.getOfferedPrice(), christopherEggsAndChicken.getQuantity());
+
+        cartProduct20.setFarmersId(christopherEggsAndChicken.getFarmersId());
+        cartProduct20.setQuantity(12);
+        cartProduct20.setCategory(christopherEggsAndChicken.getCategory());
+        double totalPrice20 = cartProduct20.getQuantity() * christopherEggsAndChicken.getOfferedPrice();
+
+        cart5.addProduct(christopherEggsAndChicken.getProductId(), cartProduct20);
+
+        Product cartProduct21 = new Product(michaelAvocado.getProductId(), michaelAvocado.getProductname(), michaelAvocado.getOfferedPrice(), michaelAvocado.getQuantity());
+
+        cartProduct21.setFarmersId(michaelAvocado.getFarmersId());
+        cartProduct21.setQuantity(2);
+        cartProduct21.setCategory(michaelAvocado.getCategory());
+        double totalPrice21 = cartProduct21.getQuantity() * michaelAvocado.getOfferedPrice();
+
+        cart5.addProduct(michaelAvocado.getProductId(), cartProduct21);
+
+        Product cartProduct22 = new Product(ashleyBanana.getProductId(), ashleyBanana.getProductname(), ashleyBanana.getOfferedPrice(), ashleyBanana.getQuantity());
+
+        cartProduct22.setFarmersId(ashleyBanana.getFarmersId());
+        cartProduct22.setQuantity(2);
+        cartProduct22.setCategory(ashleyBanana.getCategory());
+        double totalPrice22 = cartProduct22.getQuantity() * ashleyBanana.getOfferedPrice();
+
+        cart5.addProduct(ashleyBanana.getProductId(), cartProduct22);
+
+        Product cartProduct23 = new Product(rameshCabbage.getProductId(), rameshCabbage.getProductname(), rameshCabbage.getOfferedPrice(), rameshCabbage.getQuantity());
+
+        cartProduct23.setFarmersId(rameshCabbage.getFarmersId());
+        cartProduct23.setQuantity(2);
+        cartProduct23.setCategory(rameshCabbage.getCategory());
+        double totalPrice23 = cartProduct23.getQuantity() * rameshCabbage.getOfferedPrice();
+
+        cart5.addProduct(rameshCabbage.getProductId(), cartProduct23);
+
+        double totalCartPrice5 = totalPrice20 + totalPrice21 + totalPrice22 + totalPrice23;
+        System.out.println("Total Price: " + totalCartPrice);
+        Order order5 = new Order("s", new Date(), totalCartPrice5, DeliveryWorkRequest.Status.OrderPlaced.toString(), cart5);
+        Order.ordersList.add(order5);
 
         Report reportSample = new Report();
-    reportSample.setName("Annual Composting Techniques Report");
-    reportSample.setFileDescription("Detailed analysis of composting techniques used throughout the year.");
-    reportSample.setFilePath(Paths.get("/pdf/functionalSample.pdf"));
-    ReportDirectory reportDirectory = business.getReportDirectory();
-    reportDirectory.addReport(reportSample);
-
-
-
-    
+        reportSample.setName("Annual Composting Techniques Report");
+        reportSample.setFileDescription("Detailed analysis of composting techniques used throughout the year.");
+        reportSample.setFilePath(Paths.get("/pdf/functionalSample.pdf"));
+        ReportDirectory reportDirectory = business.getReportDirectory();
+        reportDirectory.addReport(reportSample);
 
         Person person29 = new Person("Emma", "Patel", "emmapatel@gmail.com", "+1-(777)-666-5555", "852 Pine St, Riverside");
         Person person30 = new Person("Nathan", "Tran", "nathantran@gmail.com", "+1-(555)-444-3333", "741 Elm St, Lakeview");

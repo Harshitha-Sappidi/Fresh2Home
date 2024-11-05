@@ -24,8 +24,9 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.ConcurrentModificationException;
 import java.util.Date;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -277,7 +278,7 @@ public class ViewCertifiedProductsJPanel extends javax.swing.JPanel {
 
         StatusCmbBox.setBackground(new java.awt.Color(255, 204, 204));
         StatusCmbBox.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
-        StatusCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sort", "Vegetable", "Fruit", "Honey", "Herbs and Spices", "Price(low-high)", "Price(high-low)", " " }));
+        StatusCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sort", "Vegetable", "Fruit", "Honey", "Herbs and Spices", "Price(low-high)", "Price(high-low)" }));
         StatusCmbBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 StatusCmbBoxActionPerformed(evt);
@@ -289,67 +290,63 @@ public class ViewCertifiedProductsJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(lblQuantity)
-                        .addGap(18, 18, 18)
-                        .addComponent(spnQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblItemsInCart)
-                        .addGap(12, 12, 12)
-                        .addComponent(btnAddToCart)))
-                .addContainerGap(257, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(204, 204, 204))
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(StatusCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(4, 4, 4)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txttotalamount, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createSequentialGroup()
                                                 .addComponent(lbltotalamount, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(btnCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txttotalamount, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(btnCheckOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnModifyQuantity)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(modifyQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(236, 236, 236)
-                                .addComponent(btnRemoveOrderItem, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(75, 75, 75)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnRemoveOrderItem, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 1311, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(lblQuantity)
+                                .addGap(18, 18, 18)
+                                .addComponent(spnQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblItemsInCart)
+                                .addGap(12, 12, 12)
+                                .addComponent(btnAddToCart))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(StatusCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(744, 744, 744)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTitle1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -368,25 +365,26 @@ public class ViewCertifiedProductsJPanel extends javax.swing.JPanel {
                             .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(modifyQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnRemoveOrderItem))
+                            .addComponent(btnModifyQuantity))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(modifyQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnModifyQuantity)
-                            .addComponent(btnRemoveOrderItem))
-                        .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txttotalamount, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbltotalamount, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
-                        .addComponent(btnCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(208, Short.MAX_VALUE))
+                            .addComponent(lbltotalamount, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txttotalamount, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCheckOut))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(271, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -570,124 +568,89 @@ public class ViewCertifiedProductsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void populateTableByCategory() {
-//        DefaultTableModel model = (DefaultTableModel) tblViewProducts.getModel();
-//        model.setRowCount(0);
-//        String Status = (String) StatusCmbBox.getSelectedItem();
-//
-//       // ArrayList<Product> ProductList = business.getProductDirectory().getProductList();
-//       ArrayList<Product> productList = new ArrayList<>(business.getProductDirectory().getProductList());
-//try {
-//        for (Product product : productList) {
-//            Product.Status status = product.getStatus();
-//            if (status.toString().equalsIgnoreCase(Product.Status.REVIEWED.toString()) && product.getCategory().equals(Status)) {
-//                Object[] row = new Object[7];
-//                String productName = product.getName();
-//                int productId = product.getProductId();
-//                double price = product.getOfferedPrice();
-//                int quantity = product.getQuantity();
-//
-//                double EstimationCost = business.getProductDirectory().calculateEstimationCost(price, quantity);
-//
-//                row[0] = productId;
-//                row[1] = productName;
-//                row[2] = price;
-//                row[3] = quantity;
-//                row[4] = product.getImage();
-//                row[5] = product.getCategory();
-//
-//                model.addRow(row);
-//                tblViewProducts.setRowHeight(150);
-//
-//            } else if (status.toString().equalsIgnoreCase(Product.Status.REVIEWED.toString()) && Status.equalsIgnoreCase("Price(low-high)")) {
-//
-//                Collections.sort(productList, Comparator.comparingDouble(Product::getOfferedPrice));
-//                for (Product productLowToHigh : productList) {
-//                    Object[] row = new Object[7];
-//                    String productName = productLowToHigh.getName();
-//                    int productId = productLowToHigh.getProductId();
-//                    double price = productLowToHigh.getOfferedPrice();
-//                    int quantity = productLowToHigh.getQuantity();
-//
-//                    double estimationCost = business.getProductDirectory().calculateEstimationCost(price, quantity);
-//
-//                    row[0] = productId;
-//                    row[1] = productName;
-//                    row[2] = price;
-//                    row[3] = quantity;
-//                    row[4] = productLowToHigh.getImage();
-//                    row[5] = productLowToHigh.getCategory();
-//
-//                    model.addRow(row);
-//                    tblViewProducts.setRowHeight(150);
-//                }
-//            } else if (status.toString().equalsIgnoreCase(Product.Status.REVIEWED.toString()) && Status.equalsIgnoreCase("Price(high-low)")) {
-//                // Filter products by high to low price
-//                Collections.sort(productList, Comparator.comparingDouble(Product::getOfferedPrice).reversed());
-//                for (Product productHighToLow : productList) {
-//                    Object[] row = new Object[7];
-//                    String productName = productHighToLow.getName();
-//                    int productId = productHighToLow.getProductId();
-//                    double price = productHighToLow.getOfferedPrice();
-//                    int quantity = productHighToLow.getQuantity();
-//
-//                    double estimationCost = business.getProductDirectory().calculateEstimationCost(price, quantity);
-//
-//                    row[0] = productId;
-//                    row[1] = productName;
-//                    row[2] = price;
-//                    row[3] = quantity;
-//                    row[4] = productHighToLow.getImage();
-//                    row[5] = productHighToLow.getCategory();
-//
-//                    model.addRow(row);
-//                    tblViewProducts.setRowHeight(150);
-//                }
-//            }
-//            
-//        } 
-//}catch (ConcurrentModificationException e) {
-//    // Handle the exception gracefully
-//    e.printStackTrace(); // Or log the exception
-//}
-//
-//
-//            tblViewProducts.getColumnModel().getColumn(4).setCellRenderer(new ImageRenderer());
-//            tblViewProducts.setModel(model);
-//            tblViewProducts.setPreferredScrollableViewportSize(new Dimension(tblViewProducts.getPreferredScrollableViewportSize().width, 150));
-//            tblViewProducts.revalidate();
-
         DefaultTableModel model = (DefaultTableModel) tblViewProducts.getModel();
         model.setRowCount(0);
-        String statusFilter = (String) StatusCmbBox.getSelectedItem();
+        String Status = (String) StatusCmbBox.getSelectedItem();
 
+        // ArrayList<Product> ProductList = business.getProductDirectory().getProductList();
         ArrayList<Product> productList = new ArrayList<>(business.getProductDirectory().getProductList());
+        try {
+            for (Product product : productList) {
+                Product.Status status = product.getStatus();
+                if (status.toString().equalsIgnoreCase(Product.Status.REVIEWED.toString()) && product.getCategory().equals(Status)) {
+                    Object[] row = new Object[7];
+                    String productName = product.getName();
+                    int productId = product.getProductId();
+                    double price = product.getOfferedPrice();
+                    int quantity = product.getQuantity();
 
-// Filter products based on status and category
-        List<Product> filteredProducts = new ArrayList<>();
-        for (Product product : productList) {
-            if (product.getStatus().equals(Product.Status.REVIEWED) && product.getCategory().equals(statusFilter)) {
-                filteredProducts.add(product);
+                    double EstimationCost = business.getProductDirectory().calculateEstimationCost(price, quantity);
+
+                    row[0] = productId;
+                    row[1] = productName;
+                    row[2] = price;
+                    row[3] = quantity;
+                    row[4] = product.getImage();
+                    row[5] = product.getCategory();
+
+                    model.addRow(row);
+                    tblViewProducts.setRowHeight(150);
+
+                } else if (status.toString().equalsIgnoreCase(Product.Status.REVIEWED.toString()) && Status.equalsIgnoreCase("Price(low-high)")) {
+
+                    Collections.sort(productList, Comparator.comparingDouble(Product::getOfferedPrice));
+                    Iterator<Product> iterator = productList.iterator();
+                    while (iterator.hasNext()) {
+                        Product productLowToHigh = iterator.next();
+                        // Your logic here
+
+//                for (Product productLowToHigh : productList) {
+                        Object[] row = new Object[7];
+                        String productName = productLowToHigh.getName();
+                        int productId = productLowToHigh.getProductId();
+                        double price = productLowToHigh.getOfferedPrice();
+                        int quantity = productLowToHigh.getQuantity();
+
+                        double estimationCost = business.getProductDirectory().calculateEstimationCost(price, quantity);
+
+                        row[0] = productId;
+                        row[1] = productName;
+                        row[2] = price;
+                        row[3] = quantity;
+                        row[4] = productLowToHigh.getImage();
+                        row[5] = productLowToHigh.getCategory();
+
+                        model.addRow(row);
+                        tblViewProducts.setRowHeight(150);
+                    }
+                } else if (status.toString().equalsIgnoreCase(Product.Status.REVIEWED.toString()) && Status.equalsIgnoreCase("Price(high-low)")) {
+                    // Filter products by high to low price
+                    Collections.sort(productList, Comparator.comparingDouble(Product::getOfferedPrice).reversed());
+                    for (Product productHighToLow : productList) {
+                        Object[] row = new Object[7];
+                        String productName = productHighToLow.getName();
+                        int productId = productHighToLow.getProductId();
+                        double price = productHighToLow.getOfferedPrice();
+                        int quantity = productHighToLow.getQuantity();
+
+                        double estimationCost = business.getProductDirectory().calculateEstimationCost(price, quantity);
+
+                        row[0] = productId;
+                        row[1] = productName;
+                        row[2] = price;
+                        row[3] = quantity;
+                        row[4] = productHighToLow.getImage();
+                        row[5] = productHighToLow.getCategory();
+
+                        model.addRow(row);
+                        tblViewProducts.setRowHeight(150);
+                    }
+                }
+
             }
-        }
-
-// Sort filtered products based on price
-        if (statusFilter.equalsIgnoreCase("Price(low-high)")) {
-            Collections.sort(filteredProducts, Comparator.comparingDouble(Product::getOfferedPrice));
-        } else if (statusFilter.equalsIgnoreCase("Price(high-low)")) {
-            Collections.sort(filteredProducts, Comparator.comparingDouble(Product::getOfferedPrice).reversed());
-        }
-
-// Add filtered and sorted products to the table model
-        for (Product product : filteredProducts) {
-            Object[] row = new Object[7];
-            row[0] = product.getProductId();
-            row[1] = product.getName();
-            row[2] = product.getOfferedPrice();
-            row[3] = product.getQuantity();
-            row[4] = product.getImage();
-            row[5] = product.getCategory();
-            model.addRow(row);
-            tblViewProducts.setRowHeight(150);
+        } catch (ConcurrentModificationException e) {
+            // Handle the exception gracefully
+            e.printStackTrace(); // Or log the exception
         }
 
         tblViewProducts.getColumnModel().getColumn(4).setCellRenderer(new ImageRenderer());

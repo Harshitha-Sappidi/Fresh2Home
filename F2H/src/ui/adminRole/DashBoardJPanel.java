@@ -57,6 +57,9 @@ public class DashBoardJPanel extends javax.swing.JPanel {
         DashBoardJPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 235, 230));
+
+        jButton1.setBackground(new java.awt.Color(255, 102, 102));
         jButton1.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
         jButton1.setText("Show Available Category");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -71,7 +74,7 @@ public class DashBoardJPanel extends javax.swing.JPanel {
         DashBoardJPanel.setLayout(new javax.swing.BoxLayout(DashBoardJPanel, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel2.setFont(new java.awt.Font("Khmer MN", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel2.setForeground(new java.awt.Color(255, 102, 102));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-back-button-30.png"))); // NOI18N
         jLabel2.setText("Back");
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -85,29 +88,25 @@ public class DashBoardJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(389, 389, 389)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(223, 223, 223)
                         .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(56, 56, 56))
-                            .addComponent(DashBoardJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 849, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(DashBoardJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 849, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(223, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel2)
-                .addGap(44, 44, 44)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jButton1))
+                .addGap(41, 41, 41)
                 .addComponent(DashBoardJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(jButton1)
-                .addContainerGap(353, Short.MAX_VALUE))
+                .addContainerGap(437, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
